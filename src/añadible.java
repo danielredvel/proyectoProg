@@ -1,16 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public interface añadible {
-    static void añadir_departamento(int nombre,int codigo){
-
+    static void añadir(Object objeto_añadido, ArrayList lista){
+        lista.add(objeto_añadido);
     }
-    static void añadir_sala(int nombre,int codigo) {
-
-    }
-
-    static void añadir_reserva(int tiempo, int sala) {
-
-
-    }
-
 
 }
