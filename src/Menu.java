@@ -1,4 +1,4 @@
-public interface menu {
+public interface Menu {
     int opcionElegida = 0;
 
     void escribir_menu();

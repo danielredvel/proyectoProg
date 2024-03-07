@@ -1,7 +1,7 @@
-public class departamento {
+public class Departamento {
     private String clave;
     private String nombre;
-    public departamento(String nombre, String clave){
+    public Departamento(String nombre, String clave){
         this.clave=clave;
         this.nombre=nombre;
     }

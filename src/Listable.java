@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public interface listable {
+public interface Listable {
     static void listar(ArrayList lista){
         Iterator indice_lista = lista.iterator();
         for (Object o2:lista) {

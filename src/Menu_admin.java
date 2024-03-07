@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class menu_admin implements menu, añadible, listable, buscable{
+public class Menu_admin implements Menu, Añadible, Listable, Buscable {
     int opcionElegida;
     String clave;
     static ArrayList lista_departamentos;
     static ArrayList lista_salas;
-    public menu_admin(String clave){
+    public Menu_admin(String clave){
         /*
          * El constructor crea una lista para los departamentos y una lista para las salas
          * Se le  indica una clave de acceso
@@ -23,12 +23,12 @@ public class menu_admin implements menu, añadible, listable, buscable{
         boolean error=true;
         do {
         System.out.print("""
-                1) Listar departamento
-                2) Añadir departamento
-                3) Eliminar departamento
-                4) Listar sala
-                5) Añadir sala
-                6) Eliminar sala
+                1) Listar Departamento
+                2) Añadir Departamento
+                3) Eliminar Departamento
+                4) Listar Sala
+                5) Añadir Sala
+                6) Eliminar Sala
                 7) Listar todas las reservas
                 8) Cerrar sesión
                 """);
@@ -61,48 +61,48 @@ public class menu_admin implements menu, añadible, listable, buscable{
         do {
         switch (opcionElegida) {
             case 1:
-                listable.listar(lista_departamentos);
+                Listable.listar(lista_departamentos);
                 break;
 
             case 2:
-                System.out.println("Nombre del departamento:");
+                System.out.println("Nombre del Departamento:");
                 nombre = in.nextLine();
-                System.out.println("Clave del departamento:");
+                System.out.println("Clave del Departamento:");
                 clave = in.nextLine();
-                departamento d = new departamento(nombre, clave);
-                añadible.añadir(d, lista_departamentos);
+                Departamento d = new Departamento(nombre, clave);
+                Añadible.añadir(d, lista_departamentos);
                 break;
 
             case 3:
-                System.out.println("Clave del departamento a retirar");
+                System.out.println("Clave del Departamento a retirar");
                 clave = in.nextLine();
-                o = buscable.buscar_clave(clave, lista_departamentos);
-                eliminable.eliminar(o, lista_departamentos);
+                o = Buscable.buscar_clave(clave, lista_departamentos);
+                Eliminable.eliminar(o, lista_departamentos);
                 break;
 
             case 4:
-                listable.listar(lista_salas);
+                Listable.listar(lista_salas);
                 break;
 
             case 5:
-                System.out.println("Nombre de la sala:");
+                System.out.println("Nombre de la Sala:");
                 nombre = in.nextLine();
-                System.out.println("Clave de la sala:");
+                System.out.println("Clave de la Sala:");
                 clave = in.nextLine();
-                departamento s = new departamento(nombre, clave);
-                añadible.añadir(s, lista_salas);
+                Departamento s = new Departamento(nombre, clave);
+                Añadible.añadir(s, lista_salas);
                 break;
 
             case 6:
-                System.out.println("Clave de la sala a retirar");
+                System.out.println("Clave de la Sala a retirar");
                 clave = in.nextLine();
-                o = buscable.buscar_clave(clave, lista_salas);
-                eliminable.eliminar(o, lista_salas);
+                o = Buscable.buscar_clave(clave, lista_salas);
+                Eliminable.eliminar(o, lista_salas);
 
                 break;
 
             case 7:
-                listable.listar(menu_inicio.menuDepartamento.getLista_reservas());
+                Listable.listar(Menu_inicio.menuDepartamento.getLista_reservas());
                 break;
 
             case 8:
