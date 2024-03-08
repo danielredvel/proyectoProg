@@ -22,6 +22,7 @@ public class Reserva {
         this.nombre=nombre;
     }
 public Reserva(){
+        boolean sala_existe=false;
         int año=0, mes=0, dia=0, minutos=0, hora=0;
         Scanner in = new Scanner(System.in);
 
@@ -64,12 +65,16 @@ public Reserva(){
     nombre = in.nextLine();
     try {
         Buscable.buscar_nombre(nombre, Menu_admin.lista_salas);
-    } catch (NullPointerException npe){
-        System.out.println("Esa sala np existe");
+        sala_existe=true;
+    } catch (NullPointerException npe) {
+        System.out.println("Esa sala no existe");
     }
-    System.out.println("Dime el tiempo que reservas");
-    Duration d1 = Duration.parse(duracion);
-    this.duracion = in.nextLine();
+    if (sala_existe) {
+        System.out.println("Dime el tiempo que reservas");
+        Duration d1 = Duration.parse(duracion);
+        this.duracion = in.nextLine();
+    }
+
     in.close();
 }
     public LocalDateTime getf1(){

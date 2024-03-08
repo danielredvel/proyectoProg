@@ -5,4 +5,5 @@ public interface Eliminable {
     lista.remove(objeto_retirado);
     }
 
+
 }
