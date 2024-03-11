@@ -69,10 +69,11 @@ public Reserva(){
     } catch (NullPointerException npe) {
         System.out.println("Esa sala no existe");
     }
-    if (sala_existe) {
+    if (!sala_existe) {
         System.out.println("Dime el tiempo que reservas");
-        Duration d1 = Duration.parse(duracion);
         this.duracion = in.nextLine();
+        Duration d1 = Duration.parse(duracion);
+
     }
 
 }
