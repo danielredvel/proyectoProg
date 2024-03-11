@@ -24,7 +24,9 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
         //Error es un centinela que repite el menú hasta que la opción sea valida
         boolean error=true;
         do {
-            System.out.print("""
+            do {
+
+                System.out.print("""
                         1) Listar Departamento
                         2) Añadir Departamento
                         3) Eliminar Departamento
@@ -34,22 +36,25 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
                         7) Listar todas las reservas
                         8) Cerrar sesión
                         """);
-            try {
-                this.opcionElegida = Integer.parseInt(in.nextLine());
-                //NoSuchElementException en el nextLine
-                this.opcion(this.opcionElegida);
-                //Si Integer.parseint no ha producido error, error=false;
-                error = false;
-            } catch (NumberFormatException nfe) {
-                //Si el error ha sido provocado debido a que no se ha introducido un número se indica ese error, excepció: NumberFormatException
-                System.out.println("Escribe un número");
-            } catch (NoSuchElementException nsee){
-                System.out.println("ERROR");
-            }
-            catch (Exception e) {
-                //recoge cualquier otro error
-                System.out.println("Error");
-            }
+                try {
+                   // this.opcionElegida = Integer.parseInt(in.nextLine());
+                    //En caso de que no se pueda ejecutar la instrucción y se lance una excepción NoSuchElemtException, la opción elegida sera la de salida
+                    this.opcionElegida = in.hasNextLine() ? Integer.parseInt(in.nextLine()) : 15;
+                    //NoSuchElementException en el nextLine
+                    this.opcion(this.opcionElegida);
+                    //Si Integer.parseint no ha producido error, error=false;
+                    error = false;
+                } catch (NumberFormatException nfe) {
+                    //Si el error ha sido provocado debido a que no se ha introducido un número se indica ese error, excepció: NumberFormatException
+                    System.out.println("Escribe un número");
+                } catch (NoSuchElementException nsee) {
+                    System.out.println("ERROR");
+                    error = false;
+                } catch (Exception e) {
+                    //recoge cualquier otro error
+                    System.out.println("Error");
+                }
+            } while (error);
         } while (opcionElegida!=8);
 
         in.close();
@@ -93,20 +98,29 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
             nombre = in.nextLine();
             System.out.println("Clave de la Sala:");
             clave = in.nextLine();
-            Departamento s = new Departamento(nombre, clave);
-            Añadible.añadir(s, lista_salas);
+            Sala s = new Sala(nombre, clave);
+            if (s!=Buscable.buscar_clave(s.getClave(), lista_salas)){
+                Añadible.añadir(s, lista_salas);
+            }
+            System.out.println("Ya existe una sala con esa clave");
+            //¿Si la sala existe vuelve a preguntar o vuelve al menú?
         } else if (opcionElegida ==6) {
             System.out.println("Clave de la Sala a retirar");
             clave = in.nextLine();
             o = Buscable.buscar_clave(clave, lista_salas);
-            Eliminable.eliminar(o, lista_salas);
+            if (o!=null){
+                Eliminable.eliminar(o, lista_salas);
+            } else System.out.println("La sala a eliminar no existe");
         } else if (opcionElegida==7) {
             Listable.listar(Menu_inicio.menuDepartamento.getLista_reservas());
 
         } else if (opcionElegida==8) {
             salir=true;
-        } else System.out.println("Opción no valida");
-
+        } else if (opcionElegida==15) {
+            //Sentencia de control de la excepción del scanner
+        } else {
+            System.out.println("Opción no valida");
+        }
         in.close();
     }
 }
