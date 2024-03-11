@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -21,22 +22,33 @@ public class Menu_inicio implements Menu {
                 3) Salir
                 """);
         //this.opcionElegida = Integer.parseInt(in.nextLine());
-        this.opcionElegida = in.hasNextLine() ? Integer.parseInt(in.nextLine()) : 15;
+        try {
+            this.opcionElegida = Integer.parseInt(in.nextLine());
+        }  catch (NumberFormatException nfe) {
+        //Si el error ha sido provocado debido a que no se ha introducido un número se indica ese error, excepció: NumberFormatException
+        System.out.println("Escribe un número");
+    } catch (
+    NoSuchElementException nsee) {
+        System.out.println("ERROR");
+    } catch (Exception e) {
+        //recoge cualquier otro error
+        System.out.println("Error");
+    }
 
         //No such element exception
         this.opcion(this.opcionElegida);
-        in.close();
     }
 
     @Override
     public void opcion(int opcionElegida) {
+        String clave_intro;
+        boolean clave_correcta=false;
         Scanner in = new Scanner(System.in);
         switch (opcionElegida) {
             case 1:
                 System.out.println("Menu de admin elegido");
                 System.out.println("Introduce la clave");
-                String clave_intro;
-                boolean clave_correcta=false;
+
                 do {
                     clave_intro = in.nextLine();
                     if (Objects.equals(this.clave, clave_intro)) {
@@ -50,16 +62,25 @@ public class Menu_inicio implements Menu {
 
             case 2:
                 System.out.println("Menu de Departamento elegido");
-                menuDepartamento = new Menu_departamento();
+
+                System.out.println("Introduce la clave");
+
+                do {
+                    clave_intro = in.nextLine();
+                    if (Buscable.buscar_clave(clave_intro, Menu_admin.lista_departamentos)!=null) {
+                        clave_correcta=true;
+                        menuDepartamento.escribir_menu();
+                    } else {
+                        System.out.println("Clave no encontrada\nIntroduce la clave:");
+                    }
+                } while (!clave_correcta);
                 menuDepartamento.escribir_menu();
 
                 break;
                 case 3:
-                    System.out.println("Hasta pronto");
+
                     salir=true;
-                break;
-            case 15:
-                //Sentencia de control del scanner
+                    System.out.println("Hasta pronto");
                 break;
 
             default:

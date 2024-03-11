@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class Menu_admin implements Menu, Añadible, Listable, Buscable {
+public class Menu_admin implements Menu, Añadible, Listable, Buscable, Eliminable {
     int opcionElegida;
     public int marca =0;
     private String clave;
@@ -24,7 +24,6 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
         //Error es un centinela que repite el menú hasta que la opción sea valida
         boolean error=true;
         do {
-            do {
 
                 System.out.print("""
                         1) Listar Departamento
@@ -40,7 +39,7 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
                    // this.opcionElegida = Integer.parseInt(in.nextLine());
                     //En caso de que no se pueda ejecutar la instrucción y se lance una excepción NoSuchElemtException, la opción elegida sera la de salida
 
-                    this.opcionElegida = in.hasNextLine() ? Integer.parseInt(in.nextLine()) : 15;
+                    this.opcionElegida = Integer.parseInt(in.nextLine());
                     //NoSuchElementException en el nextLine
                     this.opcion(this.opcionElegida);
                     //Si Integer.parseint no ha producido error, error=false;
@@ -50,20 +49,17 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
                     System.out.println("Escribe un número");
                 } catch (NoSuchElementException nsee) {
                     System.out.println("ERROR");
-                    error = false;
                 } catch (Exception e) {
                     //recoge cualquier otro error
                     System.out.println("Error");
                 }
-            } while (error);
-        } while (opcionElegida!=8);
 
-        in.close();
+        } while (opcionElegida!=8&&error);
+
     }
     @Override
     public void opcion(int opcionElegida) {
         Scanner in = new Scanner(System.in);
-
         String nombre="";
         String clave="";
         Object o;
@@ -80,8 +76,12 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
             System.out.println("Clave del Departamento:");
             clave = in.nextLine();
             Departamento d = new Departamento(nombre, clave);
-            Añadible.añadir(d, lista_departamentos);
-            this.marca++;   
+            if (d!=Buscable.buscar_objeto(d, lista_salas)){
+                Añadible.añadir(d, lista_departamentos);
+            } else {
+                System.out.println("Ya existe un departamento con ese nombre");
+            }
+            this.marca++;
         } else if (opcionElegida==3) {
             if (marca>0) {
                 System.out.println("Clave del Departamento a retirar");
@@ -98,10 +98,11 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
             System.out.println("Clave de la Sala:");
             clave = in.nextLine();
             Sala s = new Sala(nombre, clave);
-            if (s!=Buscable.buscar_clave(s.getClave(), lista_salas)){
+            if (s!=Buscable.buscar_nombre(s.getNombre(), lista_salas)){
                 Añadible.añadir(s, lista_salas);
+            } else {
+                System.out.println("Ya existe una sala con ese nombre");
             }
-            System.out.println("Ya existe una sala con esa clave");
             //¿Si la sala existe vuelve a preguntar o vuelve al menú?
         } else if (opcionElegida ==6) {
             System.out.println("Clave de la Sala a retirar");
@@ -115,11 +116,9 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
 
         } else if (opcionElegida==8) {
             salir=true;
-        } else if (opcionElegida==15) {
-            //Sentencia de control de la excepción del scanner
         } else {
             System.out.println("Opción no valida");
         }
-        in.close();
     }
+
 }

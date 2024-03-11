@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,7 +11,10 @@ public class Main {
             menuInicio.escribir_menu();
         } catch (NumberFormatException nfe){
             System.out.println("Indica un número");
-        } catch (Exception e){
+        } catch (NoSuchElementException nsee){
+            System.out.println("Error escaner");
+            }
+        catch (Exception e){
             System.out.println("Error");
         }
         } while (!Menu_inicio.salir);

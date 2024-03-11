@@ -9,4 +9,8 @@ public class Sala {
     public String getClave() {
         return clave;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
 }

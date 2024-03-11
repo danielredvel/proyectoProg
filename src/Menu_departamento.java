@@ -3,9 +3,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu_departamento implements Menu {
+public class Menu_departamento implements Menu, Eliminable, Añadible, Listable, Buscable {
     private int opcionElegida;
-    private ArrayList lista_reservas;
+    private static ArrayList lista_reservas;
     private int año ,mes ,dia ,hora ,minutos;
     String duracion;
     public Menu_departamento(){
@@ -82,9 +82,6 @@ public class Menu_departamento implements Menu {
                  Reserva r2 = new Reserva(f2, nombre);
                  Eliminable.eliminar(r2, lista_reservas);
              } else System.out.println("La Reserva no existe");
-
-
-
 
              break;
 
