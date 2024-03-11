@@ -5,11 +5,8 @@ import java.util.Scanner;
 
 public class Reserva {
     private LocalDateTime f1;
-
     private String  duracion;
     private String mensaje;
-
-
     private String nombre;
     private Duration d1;
     public Reserva(LocalDateTime f1, String nombre, Duration d1){

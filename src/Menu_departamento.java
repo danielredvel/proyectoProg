@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu_departamento implements Menu {
-    int opcionElegida;
+    private int opcionElegida;
     private ArrayList lista_reservas;
-    int año ,mes ,dia ,hora ,minutos;
+    private int año ,mes ,dia ,hora ,minutos;
     String duracion;
     public Menu_departamento(){
         this.opcionElegida = 0;

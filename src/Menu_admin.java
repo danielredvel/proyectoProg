@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Menu_admin implements Menu, Añadible, Listable, Buscable {
     int opcionElegida;
     public int marca =0;
-    String clave;
-    static ArrayList lista_departamentos;
-    static ArrayList lista_salas;
+    private String clave;
+    public static ArrayList lista_departamentos;
+    public static ArrayList lista_salas;
     public Menu_admin(String clave){
         /*
          * El constructor crea una lista para los departamentos y una lista para las salas
@@ -39,6 +39,7 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
                 try {
                    // this.opcionElegida = Integer.parseInt(in.nextLine());
                     //En caso de que no se pueda ejecutar la instrucción y se lance una excepción NoSuchElemtException, la opción elegida sera la de salida
+
                     this.opcionElegida = in.hasNextLine() ? Integer.parseInt(in.nextLine()) : 15;
                     //NoSuchElementException en el nextLine
                     this.opcion(this.opcionElegida);
@@ -59,8 +60,6 @@ public class Menu_admin implements Menu, Añadible, Listable, Buscable {
 
         in.close();
     }
-
-
     @Override
     public void opcion(int opcionElegida) {
         Scanner in = new Scanner(System.in);
