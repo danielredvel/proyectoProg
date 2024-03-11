@@ -72,7 +72,6 @@ public Reserva(){
         this.duracion = in.nextLine();
     }
 
-    in.close();
 }
     public LocalDateTime getf1(){
         return f1;
@@ -83,6 +82,11 @@ public Reserva(){
     }
     public Duration getd1(){
         return d1;
+    }
+    public String toString(){
+        String escribir="";
+        escribir+="Nombre: "+this.nombre+", clave: "+this.clave;
+        return escribir;
     }
 }
 

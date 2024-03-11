@@ -13,4 +13,10 @@ public class Sala {
     public String getNombre() {
         return nombre;
     }
+    public String toString(){
+        String escribir="";
+        escribir+="Nombre: "+this.nombre+", clave: "+this.clave;
+        return escribir;
+    }
+
 }

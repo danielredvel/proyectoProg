@@ -9,7 +9,7 @@ public interface Listable {
         } else {
             for (Object o2 : lista) {
                 if (indice_lista.hasNext()) {
-                    System.out.println(o2 + "\n");
+                    System.out.println(o2.toString() + "\n");
                 } else {
                     System.out.println();
                 }

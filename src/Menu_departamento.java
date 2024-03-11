@@ -97,4 +97,5 @@ public class Menu_departamento implements Menu, Eliminable, Añadible, Listable,
     public ArrayList getLista_reservas() {
         return lista_reservas;
     }
+
 }
