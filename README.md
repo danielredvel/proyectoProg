@@ -7,5 +7,5 @@ Author: Daniel Redondo Velasco y Hugo Serrano Hernández
 
 -----
 # **DiagramaUML**
-![](https://raw.githubusercontent.com/danielredvel/proyectoProg/master/DiagramaUML.jpg)
+![](https://raw.githubusercontent.com/danielredvel/proyectoProg/master/Diagrama_UML.jpg)
 -----
